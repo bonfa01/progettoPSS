@@ -1,0 +1,200 @@
+.outline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.rect {
+  stroke-dashoffset: 5;
+  stroke-dasharray: 0 0 10 40 10 40;
+  transition: 0.5s;
+  stroke: #ff0000; 
+  
+}
+.nav {
+  position: fixed; /* Posizione fissa */
+  top: 0; /* Rimane in cima alla pagina */
+  left: 0; /* Posiziona la navbar dal lato sinistro */
+  width: 100%; /* Occupa tutta la larghezza della pagina */
+  height: 60px; /* Altezza della navbar */
+  z-index: 1000; /* Mantiene la navbar sopra gli altri elementi */
+}
+
+.container {
+  position: relative;
+  width: 100%; /* La container ora occupa tutta la larghezza */
+  background: #330000; /* Colore di sfondo */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; /* Distanza tra gli elementi */
+  align-items: center; /* Centra verticalmente gli elementi */
+  padding: 0.5em;
+}
+
+
+/*nav bar*/
+
+
+
+.btn {
+  padding: 0.5em 1.5em;
+  color: #fff; 
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #660000; 
+  border-radius: 5px;
+}
+
+.btn:nth-child(1):hover ~ svg .rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 2 8 73.3 8 10.7;
+}
+
+.btn:nth-child(2):hover ~ svg .rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
+}
+
+.btn:nth-child(3):hover ~ svg .rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 24.5 8.5 27.5 8.5 55.5;
+}
+
+.btn:nth-child(4):hover ~ svg .rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 34.7 6.9 10.2 6.9 76;
+}
+
+.btn:hover ~ .outline .rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 0 10 40 10 40;
+  transition: 0.5s !important;
+  
+}
+
+
+
+
+/* css per la prima pagina home*/
+.separatore{
+	background-color: #f5f5f5; 
+	height:40px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
+}
+
+.logo {
+  width: auto; 
+  height: 150px; 
+  margin-bottom: 20px; 
+}
+
+.scritta {
+  color: #fff;
+  font-weight: bold;
+  font-size: 4em; 
+  text-align: center; 
+}
+
+
+.section-bg {
+  width: 100%;
+  margin-top:30px;
+  background-color: #f5f5f5; 
+  text-align: center;
+}
+
+.section-content {
+	margin-top:30px;
+  height:700px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.section-bg h2 {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.section-bg p {
+  font-size: 1.2em;
+  color: #555;
+}
+
+/* card */
+.card-container {
+  display: flex; 
+  justify-content: space-between; /* Spazio tra le card */
+  flex-wrap: nowrap; /* Evita che le card vadano a capo */
+  gap: 20px; /* Distanza tra le card */
+  padding: 20px;
+  overflow-x: auto; /* Permette lo scorrimento orizzontale se le card superano la larghezza dello schermo */
+}
+
+.card {
+  width: 350px; /* Larghezza di ciascuna card */
+  height: 254px; /* Altezza di ciascuna card */
+  border-radius: 20px;
+  background: #f5f5f5;
+  position: relative;
+  padding: 1.8rem;
+  border: 2px solid #c3c6ce;
+  transition: 0.5s ease-out;
+  overflow: visible;
+}
+
+.card-details {
+  color: black;
+  height: 100%;
+  gap: .5em;
+  display: grid;
+  place-content: center;
+}
+
+.card-button {
+  transform: translate(-50%, 125%);
+  width: 60%;
+  border-radius: 1rem;
+  border: none;
+  background-color: #660000;
+  color: #fff;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  opacity: 0;
+  transition: 0.3s ease-out;
+}
+
+/*Text*/
+.text-body {
+  color: rgb(134, 134, 134);
+}
+
+.text-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/*Hover*/
+.card:hover {
+  border-color: #660000;
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card:hover .card-button {
+  transform: translate(-50%, 50%);
+  opacity: 1;
+}

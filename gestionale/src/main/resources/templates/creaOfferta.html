@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea Offerta di Lavoro</title>
+    <link href="/static/css/creaOfferteStyle.css" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- Bottone per tornare indietro -->
+    <a href="/azienda/offerte" class="back-button">← Torna alle Offerte</a>
+
+    <div class="container">
+        <h1>Crea Offerta di Lavoro</h1>
+        
+        <form th:action="@{/azienda/creaOfferta}" method="post">
+            <label for="titolo">Titolo:</label>
+            <input type="text" id="titolo" name="titolo" required>
+
+            <label for="descrizione">Descrizione:</label>
+            <textarea id="descrizione" name="descrizione" required></textarea>
+
+            <label for="localita">Località:</label>
+            <input type="text" id="localita" name="localita" required>
+
+            <button type="submit" class="submit-button">Pubblica Offerta</button>
+        </form>
+    </div>
+
+</body>
+</html>
