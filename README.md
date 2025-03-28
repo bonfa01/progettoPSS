@@ -106,8 +106,7 @@ Utilizza Maven per eseguire l'applicazione:
 ```bash
 mvn spring-boot:run
 ``` 
-L'applicazione sarà accessibile all'indirizzo:
-http://localhost:8080
+
 
 ## 📩 Contatti
 
