@@ -106,7 +106,7 @@ Utilizza Maven per eseguire l'applicazione:
 ```bash
 mvn spring-boot:run
 ``` 
-
+note: in particolare ogni registrazione da accesso come "lavoratore" quindi sarà l'utilizzatore a dover modificare nel database cambiando il ruolo per poter accedere all'area dell'azienda.
 
 ## 📩 Contatti
 
