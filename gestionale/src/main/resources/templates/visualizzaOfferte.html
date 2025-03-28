@@ -1,44 +1,56 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offerte di Lavoro</title>
-    <link href="/static/css/offertePubblicheStyle.css" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offerte di Lavoro</title>
+<link th:href="@{/static/css/offertePubblicheStyle.css}"
+	rel="stylesheet" />
 </head>
 <body>
+	<nav class="sidebar">
+		<h2 th:text="${user.nome + ' ' + user.cognome}"></h2>
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/areaPersonale">profilo</a></li>
+			<li><a href="/visualizzaOfferte" class="active">Offerte di Lavoro</a></li>
+		</ul>
+		<form th:action="@{/logout}" method="post" class="logout-form">
+			<button type="submit" class="logout">logout</button>
+		</form>
 
-    <!-- Navbar in alto -->
-    <nav class="navbar">
-        <a href="/">Home</a>
-        <a href="/visualizzaOfferte">Offerte di Lavoro</a>
-        <a href="/visualizzaOffertePreferite">preferiti</a>
-    </nav>
+	</nav>
 
-    <!-- Contenuto principale -->
-    <div class="main-content">
-        <h1>Offerte di Lavoro</h1>
 
-     <div class="cards-container">
-    <th:block th:each="offerta : ${offerte}">
-        <div class="card">
-            <div class="card-details">
-                <h3 th:text="${offerta.titolo}"></h3>
-                <p th:text="${offerta.descrizione}"></p>
-                <p th:text="${offerta.localita}"></p>
-            </div>
+	<div class="main-content">
+		<h1>OFFERTE DI LAVORO</h1>
 
-            <!-- Form per la candidatura -->
-            <form th:action="@{/candidature/invia/{id}(id=${offerta.id})}" method="post" class="candidatura-form">
-                	<input type="text" name="nome" placeholder="Nome" />
-    				<input type="text" name="cognome" placeholder="Cognome" />
-    				<input type="email" name="email" placeholder="Email" />
-                <button type="submit" class="card-button">Invia Candidatura</button>
-            </form>
-        </div>
-    </th:block>
-</div>
-    </div>
+		<div class="cards-container">
+			<th:block th:each="offerta : ${offerte}">
+				<div class="card">
+					<div class="card-details">
+						<h3 th:text="${offerta.titolo}"></h3>
+						<div class="separator"></div>
+						<div class="offerte-text">DETTAGLI:</div> <p th:text="${offerta.descrizione}"></p>
+						<div class="separator"></div>
+						<div class="offerte-text">LUOGO: </div> <p th:text="${offerta.localita}"></p>
+						<div class="offerte-text">REQUISITI: </div> <p th:text="${offerta.requisiti}"></p>
+						<div class="offerte-text">COMPENSO: </div> <p th:text="${offerta.compenso}"></p>
+					</div>
+
+
+					<form th:action="@{/candidature/invia/{id}(id=${offerta.id})}"
+						method="post" class="candidatura-form">
+						<button type="submit" class="card-button">Invia
+							Candidatura</button>
+					</form>
+
+				</div>
+			</th:block>
+		</div>
+	</div>
 
 </body>
 </html>

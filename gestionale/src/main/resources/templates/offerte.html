@@ -1,89 +1,99 @@
 <!DOCTYPE html>
-<html lang="it">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offerte di Lavoro</title>
-    <link href="/static/css/offerteStyle.css" rel="stylesheet" />
-    <script>
-        function toggleCandidature(offertaId) {
-            var div = document.getElementById("candidature-" + offertaId);
-            if (div.style.display === "none" || div.style.display === "") {
-                div.style.display = "block";
-            } else {
-                div.style.display = "none";
-            }
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offerte di Lavoro</title>
+<link rel="stylesheet" th:href="@{/css/offerteStyle.css}" />
 
-        function confirmDeletion(event) {
-            if (!confirm("Sei sicuro di voler eliminare?")) {
-                event.preventDefault();
-            }
-        }
-    </script>
+<script>
+	function toggleCandidature(offertaId) {
+		var div = document.getElementById("candidature-" + offertaId);
+		if (div.style.display === "none" || div.style.display === "") {
+			div.style.display = "block";
+		} else {
+			div.style.display = "none";
+		}
+	}
+
+	function confirmDeletion(event) {
+		if (!confirm("Sei sicuro di voler eliminare?")) {
+			event.preventDefault();
+		}
+	}
+</script>
 </head>
 <body>
+	<nav class="sidebar">
+		<h2>Menu</h2>
+		<ul>
+			<li><a href="/azienda/offerte" class="active">offerte di lavoro</a></li>
+			<li><a href="/azienda/creaOfferta">crea nuova offerta</a></li>
+			<li><a th:href="@{/azienda/calendario}">calendario</a></li>
+			<li><a th:href="@{/azienda/anagrafica}">anagrafica</a></li>
 
-    <!-- Menu laterale -->
-    <nav class="sidebar">
-        <h2>Menu</h2>
-        <ul>
-            <li><a href="/azienda/dashboard">Dashboard</a></li>
-            <li><a href="/azienda/offerte" class="active">Offerte di Lavoro</a></li>
-            <li><a href="/azienda/profilo">Profilo</a></li>
-            <li><a href="/logout">Logout</a></li>
-        </ul>
-        <!-- Bottone per creare una nuova offerta -->
-        <a href="/azienda/creaOfferta" class="sidebar-button">+ Crea Nuova Offerta</a>
-    </nav>
 
-    <!-- Contenuto principale -->
-    <div class="main-content">
-        <h1>Offerte di Lavoro</h1>
+		</ul>
+		<form th:action="@{/logout}" method="post" class="logout-form">
+			<button type="submit" class="logout">logout</button>
+		</form>
 
-        <!-- Sezione delle offerte -->
-        <div class="cards-container">
-            <th:block th:each="offerta : ${offerte}">
-                <div class="card">
-                    <div class="card-details">
-                        <h3 th:text="${offerta.titolo}"></h3>
-                        <p th:text="${offerta.descrizione}"></p>
-                        <p th:text="${offerta.localita}"></p>
-                    </div>
-                    
-                    <!-- Bottone per mostrare/nascondere la lista candidati -->
-                    <button class="card-button" th:attr="onclick='toggleCandidature(' + ${offerta.id} + ')'" type="button">Vedi Candidati</button>
-                    
-                    <!-- Sezione candidati -->
-                    <div th:id="'candidature-' + ${offerta.id}" class="candidature-section" style="display:none;">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Cognome</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <th:block th:each="candidato : ${offerta.candidature}">
-                                    <tr>
-                                        <td th:text="${candidato.nome}"></td>
-                                        <td th:text="${candidato.cognome}"></td>
-                                        <td th:text="${candidato.email}"></td>
-                                    </tr>
-                                </th:block>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <!-- Bottone per eliminare l'offerta -->
-                    <form th:action="@{/azienda/eliminaOfferta/{id}(id=${offerta.id})}" method="post" onsubmit="confirmDeletion(event)">
-                        <button class="card-button delete-button" type="submit">Elimina</button>
-                    </form>
-                </div>
-            </th:block>
-        </div>
-    </div>
+	</nav>
+
+	<div class="main-content">
+		<h1>OFFERTE DI LAVORO</h1>
+
+		<div class="cards-container">
+			<th:block th:each="offerta : ${offerte}">
+				<div class="card">
+					<div class="card-details">
+						<h3 th:text="${offerta.titolo}"></h3>
+						<div class="separator"></div>
+						<div class="offerte-text">DETTAGLI:</div> <p th:text="${offerta.descrizione}"></p>
+						<div class="separator"></div>
+						<div class="offerte-text">LUOGO: </div> <p th:text="${offerta.localita}"></p>
+						<div class="offerte-text">REQUISITI: </div> <p th:text="${offerta.requisiti}"></p>
+						<div class="offerte-text">COMPENSO: </div> <p th:text="${offerta.compenso}"></p>
+						<div class="separator"></div>
+					</div>
+
+
+					<button class="card-button"
+						th:attr="onclick='toggleCandidature(' + ${offerta.id} + ')'"
+						type="button">Vedi Candidati</button>
+
+
+					<div th:id="'candidature-' + ${offerta.id}"
+						class="candidature-section" style="display: none;">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Nome</th>
+									<th>Cognome</th>
+									<th>Email</th>
+								</tr>
+							</thead>
+							<tbody>
+								<th:block th:each="candidato : ${offerta.candidature}">
+									<tr>
+										<td th:text="${candidato.nome}"></td>
+										<td th:text="${candidato.cognome}"></td>
+										<td th:text="${candidato.email}"></td>
+									</tr>
+								</th:block>
+							</tbody>
+						</table>
+					</div>
+
+
+					<form th:action="@{/azienda/eliminaOfferta/{id}(id=${offerta.id})}"
+						method="post" onsubmit="confirmDeletion(event)">
+						<button class="card-button delete-button" type="submit">Elimina</button>
+					</form>
+				</div>
+			</th:block>
+		</div>
+	</div>
 
 </body>
 </html>

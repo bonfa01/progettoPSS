@@ -11,14 +11,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.core.userdetails.UserDetailsService;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -31,22 +31,27 @@ public class SecurityConfig {
     }
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/register", "/user/register", "/login", "/css/**", "/js/**").permitAll()
-                .anyRequest().authenticated()
+                    .requestMatchers("/", "/register", "/user/register", "/index", "/login","/image/**", "/css/**","/video/**", "/js/**").permitAll()
+                    .requestMatchers("/azienda/**").hasRole("ADMIN") 
+                    .anyRequest().authenticated()
             )
             .formLogin(form -> form
-                .loginPage("/login")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/visualizzaOfferte", true)
-                .permitAll()
+                    .loginPage("/login")  // Login generico
+                    .loginProcessingUrl("/login")
+                    .successHandler(authenticationSuccessHandler())
+                    .permitAll()
             )
             .logout(logout -> logout
-                .logoutSuccessUrl("/login?logout")
-                .permitAll()
+                    .logoutSuccessUrl("/login?logout")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID")
+                    .permitAll()
             );
+         
+
         return http.build();
     }
 
@@ -59,4 +64,15 @@ public class SecurityConfig {
     AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
-}
+    
+    private AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return (request, response, authentication) -> {
+            if (authentication.getAuthorities().stream()
+                    .anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"))) {
+                
+                response.sendRedirect("/azienda/offerte");
+            } else {
+                response.sendRedirect("/visualizzaOfferte");
+            }
+        };
+}}

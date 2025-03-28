@@ -20,13 +20,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        // Forza l'email in minuscolo e rimuove spazi
         String emailLower = email.toLowerCase().trim();
         User appUser = userRepository.findByEmail(emailLower);
-        if (appUser == null) {
-            throw new UsernameNotFoundException("Utente non trovato con email: " + emailLower);
-        }
-        // Costruisce l'autorità partendo dal ruolo; ad esempio, se role è "ADMIN" restituisce "ROLE_ADMIN"
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + appUser.getRole().toUpperCase());
         return new org.springframework.security.core.userdetails.User(
             appUser.getEmail(),

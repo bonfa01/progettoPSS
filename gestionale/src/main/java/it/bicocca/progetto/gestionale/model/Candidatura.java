@@ -1,37 +1,37 @@
 package it.bicocca.progetto.gestionale.model;
 
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "candidature")
 public class Candidatura {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "offerta_id", nullable = false)
-    private OffertaDiLavoro offerta;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false)
-    private String nome;
+	@ManyToOne
+	@JoinColumn(name = "offerta_id", nullable = false)
+	private OffertaDiLavoro offerta;
 
-    @Column(nullable = false)
-    private String cognome;
+	@Column(nullable = false)
+	private String nome;
 
-    @Column(nullable = false)
-    private String email;
+	@Column(nullable = false)
+	private String cognome;
 
-    
-    // Costruttori
-    public Candidatura() {}
+	@Column(nullable = false)
+	private String email;
 
-    public Candidatura(OffertaDiLavoro offerta, String nome, String email, String cognome) {
-        this.offerta = offerta;
-        this.nome = nome;
-        this.email = email;
-        this.cognome = cognome;
-    }
+	public Candidatura() {
+	}
+
+	public Candidatura(OffertaDiLavoro offerta, String nome, String email, String cognome) {
+		this.offerta = offerta;
+		this.nome = nome;
+		this.email = email;
+		this.cognome = cognome;
+	}
 
 	public Long getId() {
 		return id;
@@ -73,5 +73,4 @@ public class Candidatura {
 		this.email = email;
 	}
 
-    
 }

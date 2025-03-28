@@ -1,32 +1,61 @@
 <!DOCTYPE html>
-<html lang="it">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crea Offerta di Lavoro</title>
-    <link href="/static/css/creaOfferteStyle.css" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crea offerta di lavoro</title>
+
+<link th:href="@{/css/creaOfferteStyle.css}" rel="stylesheet" />
 </head>
 <body>
+	<nav class="sidebar">
+		<h2>Menu</h2>
+		<ul>
+			<li><a href="/azienda/offerte">offerte di lavoro</a></li>
+			<li><a href="/azienda/creaOfferta" class="active">crea nuova
+					offerta</a></li>
+			<li><a th:href="@{/azienda/calendario}">calendario</a></li>
+			<li><a th:href="@{/azienda/anagrafica}">anagrafica</a></li>
 
-    <!-- Bottone per tornare indietro -->
-    <a href="/azienda/offerte" class="back-button">← Torna alle Offerte</a>
 
-    <div class="container">
-        <h1>Crea Offerta di Lavoro</h1>
-        
-        <form th:action="@{/azienda/creaOfferta}" method="post">
-            <label for="titolo">Titolo:</label>
-            <input type="text" id="titolo" name="titolo" required>
 
-            <label for="descrizione">Descrizione:</label>
-            <textarea id="descrizione" name="descrizione" required></textarea>
+		</ul>
+		<form th:action="@{/logout}" method="post" class="logout-form">
+			<button type="submit" class="logout">logout</button>
+		</form>
 
-            <label for="localita">Località:</label>
-            <input type="text" id="localita" name="localita" required>
+	</nav>
 
-            <button type="submit" class="submit-button">Pubblica Offerta</button>
-        </form>
-    </div>
+
+	<div class="container">
+		<h1>CREA NUOVA OFFERTA</h1>
+
+		<form th:action="@{/azienda/creaOfferta}" method="post">
+			<label for="titolo">Titolo:</label> <input type="text" id="titolo"
+				name="titolo" placeholder="titolo" required> <label
+				for="descrizione">Descrizione:</label>
+			<textarea id="descrizione" name="descrizione"
+				placeholder="descrizione..." required></textarea>
+
+			<label for="localita">Località:</label> <input type="text"
+				id="localita" name="localita" placeholder="luogo..." required>
+
+			<label for="requisiti">Requisiti:</label> <input type="text"
+				id="requisiti" name="requisiti" placeholder="requisti..." required>
+
+			<label for="compenso">Compenso:</label> <input type="text"
+				id="compenso" name="compenso" placeholder="compenso..." required>
+
+			<label for="dataInizio">Data di inizio</label> <input
+				type="datetime-local" id="dataInizio" name="data di inizio evento" required>
+
+			<label for="dataFine">Data di fine</label> <input
+				type="datetime-local" id="dataFine" name="data di fine evento" required>
+
+
+			<button type="submit" class="submit-button">Pubblica offerta</button>
+		</form>
+	</div>
 
 </body>
 </html>

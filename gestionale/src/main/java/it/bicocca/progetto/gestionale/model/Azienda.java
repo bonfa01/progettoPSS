@@ -1,6 +1,5 @@
 package it.bicocca.progetto.gestionale.model;
 
-
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -8,46 +7,45 @@ import jakarta.persistence.*;
 @Entity
 public class Azienda {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String nome;
-    private String descrizione;
-    
-    @OneToMany(mappedBy = "azienda", cascade = CascadeType.ALL)
-    private List<OffertaDiLavoro> offerteDiLavoro;
+	private String nome;
+	private String descrizione;
 
-    // Getter e Setter
-    public Long getId() {
-        return id;
-    }
+	@OneToMany(mappedBy = "azienda", cascade = CascadeType.ALL)
+	private List<OffertaDiLavoro> offerteDiLavoro;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public String getDescrizione() {
-        return descrizione;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
+	public String getDescrizione() {
+		return descrizione;
+	}
 
-    public List<OffertaDiLavoro> getOfferteDiLavoro() {
-        return offerteDiLavoro;
-    }
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
 
-    public void setOfferteDiLavoro(List<OffertaDiLavoro> offerteDiLavoro) {
-        this.offerteDiLavoro = offerteDiLavoro;
-    }
+	public List<OffertaDiLavoro> getOfferteDiLavoro() {
+		return offerteDiLavoro;
+	}
+
+	public void setOfferteDiLavoro(List<OffertaDiLavoro> offerteDiLavoro) {
+		this.offerteDiLavoro = offerteDiLavoro;
+	}
 }

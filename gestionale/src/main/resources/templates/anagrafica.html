@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista Utenti</title>
+<link rel="stylesheet" th:href="@{/css/anagraficaStyle.css}" />
+</head>
+<body>
+		<h1>ANAGRAFICA LAVORATORI</h1>
+		<a href="/azienda/offerte" class="back-button">← Torna alle offerte</a>
+	
+	<div class="container">
+		<div class="search-container">
+			<input type="text" id="searchInput" onkeyup="searchTable()"
+				placeholder="Cerca">
+		</div>
+		<table id="userTable">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Cognome</th>
+					<th>Email</th>
+					<th>Telefono</th>
+					<th>Data di Nascita</th>
+					<th>Sesso</th>
+					<th>Residenza</th>
+					<th>Ruolo</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.nome}"></td>
+					<td th:text="${user.cognome}"></td>
+					<td th:text="${user.email}"></td>
+					<td th:text="${user.numeroTelefono}"></td>
+					<td th:text="${user.dataNascita}"></td>
+					<td th:text="${user.sesso}"></td>
+					<td th:text="${user.residenza}"></td>
+					<td th:text="${user.role}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script>
+		function searchTable() {
+			const input = document.getElementById("searchInput");
+			const filter = input.value;
+			const table = document.getElementById("userTable");
+			const rows = table.getElementsByTagName("tr");
+
+			for (let i = 1; i < rows.length; i++) {
+				const cells = rows[i].getElementsByTagName("td");
+				let match = false;
+
+				for (let j = 0; j < cells.length; j++) {
+					if (cells[j]
+							&& cells[j].textContent.toLowerCase().includes(
+									filter)) {
+						match = true;
+						break;
+					}
+				}
+
+				rows[i].style.display = match ? "" : "none";
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+<meta charset="UTF-8">
+<title>Login</title>
+<link rel="stylesheet" th:href="@{/css/loginStyle.css}" />
 </head>
 <body>
-    <h2>Login</h2>
-    <form th:action="@{/login}" method="post">
-         	<label for="email">Email:</label>
-    		<input type="email" id="email" name="username" required /><br><br>
 
-    		<label for="password">Password:</label>
-    		<input type="password" id="password" name="password" required /><br><br>
 
-        <button type="submit">Accedi</button>
-    </form>
+	<div class="container">
+    <h2>LOGIN</h2>
+    <div class="content-wrapper">
 
-    <div th:if="${param.error}" style="color:red;">
-        <p>Credenziali errate, riprova.</p>
+        <div class="form-container">
+            <form th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label for="email">Email:</label> 
+                    <input type="email" id="email" name="username" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label> 
+                    <input type="password" id="password" name="password" required />
+                </div>
+
+                <button type="submit" class="submit-button">Accedi</button>
+            </form>
+
+            <div th:if="${param.error}" class="message-error">
+                <p>Credenziali errate, riprova.</p>
+            </div>
+            <div th:if="${param.logout}" class="message-success">
+                <p>Logout effettuato con successo.</p>
+            </div>
+
+            <div class="bottom-register">
+                <p>Non hai un account? <a th:href="@{/register}" class="accedi">Registrati qui</a></p>
+            </div>
+        </div>
     </div>
-    <div th:if="${param.logout}" style="color:green;">
-        <p>Logout effettuato con successo.</p>
-    </div>
+</div>
 
-    <p>Non hai un account? <a th:href="@{/register}">Registrati qui</a></p>
 </body>
+
 </html>

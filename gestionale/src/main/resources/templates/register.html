@@ -1,40 +1,81 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Registrazione Utente</title>
+<meta charset="UTF-8">
+<title>Registrazione Utente</title>
+<link rel="stylesheet" th:href="@{/css/registerStyle.css}">
 </head>
 <body>
-    <h2>Registrazione Utente</h2>
-    <form th:action="@{/user/register}" method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required /><br><br>
+	<div class="container">
+		<h2>REGISTRAZIONE</h2>
+		<form th:action="@{/user/register}" method="post">
+			<div class="form-group">
+				<label for="nome">Nome:</label> <input type="text" id="nome"
+					name="nome" required />
+			</div>
 
-        <label for="cognome">Cognome:</label>
-        <input type="text" id="cognome" name="cognome" required /><br><br>
+			<div class="form-group">
+				<label for="cognome">Cognome:</label> <input type="text"
+					id="cognome" name="cognome" required />
+			</div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required /><br><br>
+			<div class="form-group">
+				<label for="email">Email:</label> <input type="email" id="email"
+					name="email" required />
+			</div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required /><br><br>
+			<div class="form-group">
+				<label for="password">Password:</label> <input type="password"
+					id="password" name="password" required />
+			</div>
 
-        <label for="role">Ruolo:</label>
-        <select id="role" name="role">
-            <option value="LAVORATORE">Lavoratore</option>
-            <option value="ADMIN">Admin</option>
-        </select><br><br>
+			<div class="form-group">
+				<label for="numeroTelefono">Numero di Telefono:</label> <input
+					type="text" id="numeroTelefono" name="numeroTelefono" required />
+			</div>
 
-        <button type="submit">Registrati</button>
-    </form>
-    
-    <div th:if="${error}" style="color:red;">
-        <p th:text="${error}"></p>
-    </div>
-    <div th:if="${message}" style="color:green;">
-        <p th:text="${message}"></p>
-    </div>
+			<div class="form-group">
+				<label for="dataNascita">Data di Nascita:</label> <input type="date"
+					id="dataNascita" name="dataNascita" required />
+			</div>
 
-    <p>Hai già un account? <a th:href="@{/login}">Accedi qui</a></p>
+			<div class="form-group">
+				<label for="sesso">Sesso:</label> <select id="sesso" name="sesso">
+					<option value="M">Uomo</option>
+					<option value="F">Donna</option>
+					<option value="Altro">Altro</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="residenza">Residenza:</label> <input type="text"
+					id="residenza" name="residenza" required />
+			</div>
+
+			<div class="form-group">
+				<label for="role">Ruolo:</label> <select id="role" name="role">
+					<option value="LAVORATORE">Lavoratore</option>
+				</select>
+			</div>
+
+
+			<button type="submit" class="submit-button">Registrati</button>
+
+		</form>
+
+		<div th:if="${error}" class="error-message">
+			<p th:text="${error}"></p>
+		</div>
+		<div th:if="${message}" class="success-message">
+			<p th:text="${message}"></p>
+		</div>
+
+		<div class="bottom-login">
+			<p>
+				Hai già un account? <a th:href="@{/login}" class="accedi">Accedi
+					qui</a>
+			</p>
+		</div>
+	</div>
 </body>
 </html>

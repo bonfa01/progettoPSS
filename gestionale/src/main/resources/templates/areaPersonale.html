@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifica Utente</title>
+    <link rel="stylesheet" th:href="@{/static/css/areaPersonaleStyle.css}">
+</head>
+<body>
+
+<nav class="sidebar">
+		<h2 th:text="${user.nome + ' ' + user.cognome}"></h2>
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="//areaPersonale" class="active">profilo</a></li>
+			<li><a href="/visualizzaOfferte">Offerte di Lavoro</a></li>	
+		</ul>
+		<form th:action="@{/logout}" method="post" class="logout-form">
+			<button type="submit" class="logout">logout</button>
+		</form>
+
+	</nav>
+
+    <div class="container">
+        <h1>PROFILO</h1>
+        <form th:action="@{/areaPersonale}" th:object="${user}" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" th:value="*{nome}" required>
+
+            <label for="cognome">Cognome:</label>
+            <input type="text" id="cognome" name="cognome" th:value="*{cognome}" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" th:value="*{email}" required>
+
+            <label for="telefono">Numero di telefono:</label>
+            <input type="text" id="telefono" name="numeroTelefono" th:value="*{numeroTelefono}" required>
+
+            <label for="residenza">Residenza:</label>
+            <input type="text" id="residenza" name="residenza" th:value="*{residenza}" required>
+            
+            <button class="submit-button" type="submit">Salva Modifiche</button>
+        </form>
+    </div>
+</body>
+</html>

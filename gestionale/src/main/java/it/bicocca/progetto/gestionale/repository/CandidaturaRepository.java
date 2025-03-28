@@ -10,5 +10,5 @@ import it.bicocca.progetto.gestionale.model.OffertaDiLavoro;
 
 @Repository
 public interface CandidaturaRepository extends JpaRepository<Candidatura, Long> {
-    List<Candidatura> findByOfferta(OffertaDiLavoro offerta);
+	List<Candidatura> findByOfferta(OffertaDiLavoro offerta);
 }

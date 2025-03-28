@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FMF Group - Home</title>
+<link rel="stylesheet" th:href="@{/css/homeStyle.css}" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+	rel="stylesheet">
+<script defer src="script.js"></script>
+</head>
+<body>
+	
+	<nav>
+
+		<ul class="nav-links">
+			<li><a href="#home">Home</a></li>
+			<li><a href="#chi siamo">Chi Siamo</a></li>
+			<li><a href="#servizi">Servizi</a></li>
+			<li><a href="#partner">Partner</a></li>
+			<li><a href="#contatti">Contatti</a></li>
+		</ul>
+
+
+	</nav>
+
+
+	<section id="home" class="hero">
+		<div class="hero-content">
+			<div class="focus-in-expand">
+				<div class="logo">
+					<img src="/image/logo.png" alt="FMF Group Logo">
+				</div>
+				<h1 class="hero-title">La forza di un gruppo al tuo servizio</h1>
+				<p class="hero-subtitle">un team di specialisti per soluzioni
+				all’avanguardia dedicate a imprese e professionisti</p>
+				<a th:href="@{/register}" class="btn">UNISCITI A NOI</a>
+			</div>
+		</div>
+	</section>
+
+	<div id="chi siamo" class="section-bg">
+		<div class="separatore"></div>
+		<div class="section-content">
+			<h2>chi siamo</h2>
+			<p>
+				<b>FMF BUSINESS SOLUTIONS S.r.l</b>. nasce nel marzo 2019 come
+				evoluzione di <b>FMF Eventi S.r.l.</b>, impresa specializzata nel
+				facility management, nella gestione di servizi per eventi
+				sportivi/culturali e nei <b>servizi alle imprese</b>, con una
+				pluriennale esperienza nella consulenza sulla <b>sicurezza </b>e <b>l’organizzazione
+				</b> di grandi <b>eventi</b>.
+			</p>
+			<p>
+				Con la fine del periodo pandemico e il ritorno a condizioni di
+				aggregazione per concerti, eventi sportivi e musicali, <b>FMF
+					BUSINESS SOLUTION</b> si propone come punto di riferimento capace di
+				unire la conoscenza a 360° del settore con le più aggiornate e
+				flessibili modalità di erogazione di percorsi <b>formativi </b>ricchi
+				di contenuti sempre più specifici nel rispetto delle direttive
+				sanitarie e delle nuove competenze necessarie.
+			</p>
+			<p>
+				Per raggiungere tale obiettivo la società si avvale di <b>collaboratori
+					esterni</b> e di <b>formatori</b> e <b>docenti esperti</b>, valutati e
+				selezionati in base alle competenze professionali e all’esperienza.
+			</p>
+			<p>
+				Nel 2021 la Società ottiene la Certificazione <b>ISO 9001:2015</b>
+				Artt. 35 e 37.
+			</p>
+		</div>
+	</div>
+
+
+	<section id="servizi" class="services">
+		<div class="separatore"></div>
+
+		<h2>I nostri servizi</h2>
+		<div class="service-card">
+			<h3>Consulenza</h3>
+			<p>Analisi strategiche per il tuo business.</p>
+		</div>
+		<div class="service-card">
+			<h3>Software Solutions</h3>
+			<p>Sviluppiamo soluzioni tecnologiche avanzate.</p>
+		</div>
+		<div class="service-card">
+			<h3>Formazione</h3>
+			<p>Corsi di aggiornamento per aziende e professionisti.</p>
+		</div>
+	</section>
+
+	
+	<section id="partner" class="partners">
+		<div class="separatore"></div>
+		<h2>I nostri partner</h2>
+		<div class="partner-logos">
+			<img src="/image/partner1.jpg" alt="Partner1"> <img
+				src="/image/partner2.jpg" alt="Partner2"> <img
+				src="/image/partner3.png" alt="Partner3"> <img
+				src="/image/partner4.jpg" alt="Partner4"> <img
+				src="/image/partner5.png" alt="Partner5">
+		</div>
+
+	</section>
+
+
+	<section id="contatti" class="contacts">
+		<h2>Contattaci</h2>
+		<p>Email: info@fmfgroup.it | Telefono: +39 123 456 789</p>
+	</section>
+
+	
+	<footer>
+		<div class="footer-content">
+			<p>&copy; 2025 FMF Group. Tutti i diritti riservati.</p>
+		</div>
+	</footer>
+</body>
+</html>
