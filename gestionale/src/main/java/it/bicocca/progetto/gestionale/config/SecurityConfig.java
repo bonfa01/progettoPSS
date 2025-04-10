@@ -39,7 +39,7 @@ public class SecurityConfig {
                     .anyRequest().authenticated()
             )
             .formLogin(form -> form
-                    .loginPage("/login")  // Login generico
+                    .loginPage("/login")  
                     .loginProcessingUrl("/login")
                     .successHandler(authenticationSuccessHandler())
                     .permitAll()
