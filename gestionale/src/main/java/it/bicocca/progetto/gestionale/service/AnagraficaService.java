@@ -16,4 +16,5 @@ public class AnagraficaService {
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
+
 }
